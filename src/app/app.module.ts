@@ -4,18 +4,15 @@ import * as morgan from 'morgan';
 import { Logger } from '../domain/logger/logger.service';
 import { HealthModule } from './modules/health.module';
 import { ConfigModule } from 'src/config/config.module';
-import { CurrencyExchangeModule } from './modules/currencyExchange.module';
-import { CurrencyCodeMiddleware } from 'src/domain/middlewares/currencyCodes.middleware';
-import { CurrencyExchangeController } from './controllers/currencyExchange.controller';
+import { TorreModule } from './modules/torre.module';
 
 @Module({
-  imports: [LoggerModule, ConfigModule, HealthModule, CurrencyExchangeModule]
+  imports: [LoggerModule, ConfigModule, HealthModule, TorreModule]
 })
 export class AppModule implements NestModule {
   constructor(private logger: Logger) {}
 
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(morgan('tiny', { stream: this.logger.stream })).forRoutes({ path: '*', method: RequestMethod.ALL });
-    consumer.apply(CurrencyCodeMiddleware).forRoutes(CurrencyExchangeController);
   }
 }

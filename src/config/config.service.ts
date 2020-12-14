@@ -6,10 +6,8 @@ dotenv.config();
 const ENV_VARIABLES = {
   NODE_ENV: '',
   PORT: '',
-  CLIENT_VISA_URL: '',
-  VISA_FOREIGN_EXCHANGE_PATH: '',
-  VISA_USER_ID: '',
-  VISA_PASSWORD: ''
+  TORRE_SEARCH_URL: '',
+  TORRE_JOBS_PATH: ''
 };
 type EnvVariablesType = typeof ENV_VARIABLES;
 
@@ -31,10 +29,8 @@ export class ConfigService {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       NODE_ENV: Joi.string().default('local').valid('local', 'develop', 'production', 'test'),
       PORT: Joi.number().default(3000),
-      CLIENT_VISA_URL: Joi.string().required(),
-      VISA_FOREIGN_EXCHANGE_PATH: Joi.string().required(),
-      VISA_USER_ID: Joi.string().required(),
-      VISA_PASSWORD: Joi.string().required()
+      TORRE_SEARCH_URL: Joi.string().required(),
+      TORRE_JOBS_PATH: Joi.string().required()
     });
 
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(envConfig);
@@ -52,20 +48,12 @@ export class ConfigService {
     return Number(this.envConfig.PORT);
   }
 
-  get visaUrl(): string {
-    return String(this.envConfig.CLIENT_VISA_URL);
+  get torreSearchUrl(): string {
+    return String(this.envConfig.TORRE_SEARCH_URL);
   }
 
-  get visaForeignExchagePath(): string {
-    return String(this.envConfig.VISA_FOREIGN_EXCHANGE_PATH);
-  }
-
-  get visaUserId(): string {
-    return String(this.envConfig.VISA_USER_ID);
-  }
-
-  get visaPassword(): string {
-    return String(this.envConfig.VISA_PASSWORD);
+  get torreJobsPath(): string {
+    return String(this.envConfig.TORRE_JOBS_PATH);
   }
 
   get(key: string): string {
