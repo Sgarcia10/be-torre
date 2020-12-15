@@ -2,5 +2,5 @@ export enum TorreTypeParam {
   fullTime = 'full-time-employment',
   partTime = 'part-time-employment',
   internship = 'internships',
-  freelance = 'reelance-gigs'
+  freelance = 'freelance-gigs'
 }

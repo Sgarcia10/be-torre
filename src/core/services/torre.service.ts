@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { TorreJobsRequest } from 'src/client/dto/request/jobs.request';
+import { TorreJobsRequest, TorreJobsRequestAnd } from 'src/client/dto/request/jobs.request';
 import { TorreClient } from 'src/client/torre.client';
 import { TorreParams } from 'src/common/dtos/request/torreParams.dto';
 import { JobsResponse } from 'src/common/dtos/response/jobs.dto';
@@ -53,22 +53,27 @@ export class TorreService {
       });
   }
 
-  buildBody(params: TorreParams): TorreJobsRequest {
+  buildBody(params: TorreParams): TorreJobsRequest | TorreJobsRequestAnd {
     const { language, remote, type } = params;
     if (!language) throw new HttpDomainException({ message: 'Invalid language' });
     const t = new TorreJobsRequest();
+    let isAnd = false;
     t['skill/role'].text = language;
     if (remote) {
+      isAnd = true;
       t.remote.term = true;
     } else {
       delete t.remote;
     }
 
     if (type) {
+      isAnd = true;
       t.type.code = TorreTypeParam[type];
     } else {
       delete t.type;
     }
+
+    if (isAnd) return new TorreJobsRequestAnd(t);
 
     return t;
   }

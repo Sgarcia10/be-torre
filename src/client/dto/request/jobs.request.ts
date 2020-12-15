@@ -8,3 +8,16 @@ export class TorreJobsRequest {
   };
   type = { code: '' };
 }
+
+export class TorreJobsRequestAnd {
+  and: Record<string, any>[];
+
+  constructor(t: TorreJobsRequest) {
+    this.and = [];
+    Object.keys(t).forEach((k) => {
+      const j = {};
+      j[k] = t[k];
+      this.and.push(j);
+    });
+  }
+}
