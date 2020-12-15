@@ -19,7 +19,8 @@ if (process.env.NODE_ENV === 'local') {
     const logger: Logger = new Logger();
 
     const app = await NestFactory.create(AppModule, {
-      logger
+      logger,
+      cors: true
     });
     const configService = app.get(ConfigService);
     app.useLogger(logger);
@@ -47,7 +48,8 @@ if (process.env.NODE_ENV === 'local') {
     const logger: Logger = new Logger();
 
     const app = await NestFactory.create(AppModule, new ExpressAdapter(expressApp), {
-      logger
+      logger,
+      cors: true
     });
     app.useLogger(logger);
     app.useGlobalFilters(new HttpExceptionFilter());
@@ -62,6 +64,8 @@ if (process.env.NODE_ENV === 'local') {
         }
       })
     );
+    app.enableCors();
+
     await app.init();
 
     return createServer(expressApp);
