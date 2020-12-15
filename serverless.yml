@@ -28,4 +28,5 @@ functions:
      - http:
          method: any
          path: /{any+}
+         cors: true 
   
