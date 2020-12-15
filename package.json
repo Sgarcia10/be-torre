@@ -6,9 +6,6 @@
   "license": "",
   "repository": "",
   "scripts": {
-    "create-npmrc": "bash create-npmrc.sh --local",
-    "swagger:generate": "ts-node --project ./tsconfig.json -r tsconfig-paths/register swagger.builder.ts",
-    "swagger:upload": "rpp-swagger-ts-plugin dist/swagger.json",
     "prebuild": "rimraf dist",
     "build": "webpack",
     "start:dev": "nodemon",
@@ -19,7 +16,8 @@
     "test": "jest --config jest.config.json",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test_e2e/jest-e2e.json"
+    "test:e2e": "jest --config ./test_e2e/jest-e2e.json",
+    "deploy": "npm prune --production && sls deploy"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -27,6 +25,8 @@
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
     "@nestjs/swagger": "^4.5.5",
+    "aws-lambda": "^1.0.6",
+    "aws-serverless-express": "^3.4.0",
     "chalk": "^4.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
@@ -69,7 +69,8 @@
     "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.3",
-    "webpack-cli": "^3.3.11",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0",
     "webpack-node-externals": "^1.7.2"
   }
 }

@@ -23,12 +23,34 @@ export class TorreService {
     const body = this.buildBody(params);
     try {
       const { data } = await this.torreClient.getJobs(body, params.currency);
-      return TorreJobsToJobsMapper.map(data);
+      const jobs = TorreJobsToJobsMapper.map(data);
+      jobs.currency = params.currency;
+      jobs.total = this.calculateTotal(jobs);
+      jobs.mean = this.calculateMean(jobs);
+      return jobs;
     } catch (error) {
       console.log(error.response?.data ?? error);
 
       throw new HttpDomainException({ message: 'Can not get data from torre' });
     }
+  }
+
+  calculateTotal(jobs: JobsResponse): number {
+    return jobs.salaries
+      .map((s) => s.total)
+      .reduce((a, b) => {
+        return a + b;
+      });
+  }
+
+  calculateMean(jobs: JobsResponse): number {
+    return jobs.salaries
+      .map((s) => {
+        return ((s.rangeInitial ?? 0 + s.rangeFinal ?? 0) * s.total) / (2 * jobs.total);
+      })
+      .reduce((a, b) => {
+        return a + b;
+      });
   }
 
   buildBody(params: TorreParams): TorreJobsRequest {

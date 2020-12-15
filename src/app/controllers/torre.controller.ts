@@ -5,7 +5,7 @@ import { JobsResponse } from 'src/common/dtos/response/jobs.dto';
 import { TorreService } from 'src/core/services/torre.service';
 
 @ApiTags('Currency Exchange')
-@Controller('')
+@Controller('torre')
 export class TorreController {
   constructor(private torreService: TorreService) {}
 

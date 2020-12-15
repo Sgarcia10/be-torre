@@ -1,5 +1,7 @@
 export class JobsResponse {
   mean: number;
+  total: number;
+  currency: string;
   salaries: Array<SalaryResponse>;
 }
 

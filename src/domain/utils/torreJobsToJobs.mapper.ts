@@ -5,6 +5,8 @@ export class TorreJobsToJobsMapper {
   static map(torreJobs: TorreJobsResponse): JobsResponse {
     return {
       mean: 0,
+      total: 0,
+      currency: '',
       salaries: torreJobs.aggregators.compensationrange.map(this.mapCompensationRangeToSalary)
     };
   }

@@ -26,6 +26,7 @@ module.exports = {
   },
   optimization: {
     minimize: false,
+    nodeEnv: false
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
