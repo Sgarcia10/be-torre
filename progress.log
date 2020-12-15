@@ -1,0 +1,10 @@
+[12-12-2020 15:00 - 12-12-2020 17:00] Brainstorming 
+[13-12-2020 18:00 - 13-12-2020 22:00] Designed the front-end template 
+[14-12-2020 09:00 - 14-12-2020 12:00] Implemented filters in front end
+[14-12-2020 12:00 - 14-12-2020 14:00] Initialized backend an a created torre client 
+[14-12-2020 14:00 - 14-12-2020 15:00] Created mappers and filters 
+[14-12-2020 15:00 - 14-12-2020 18:00] Deploy frontend in S3 and set CloudFront
+[14-12-2020 18:00 - 14-12-2020 20:00] Deploy backend in Lambda and set ApiGateway 
+[14-12-2020 22:00 - 15-12-2020 01:00] Implemented backend client in frontend 
+[15-12-2020 01:00 - 15-12-2020 04:00] Implemented chartjs
+[15-12-2020 04:00 - 15-12-2020 06:00] Implemented test on backend

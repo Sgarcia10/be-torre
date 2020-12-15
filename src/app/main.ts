@@ -36,6 +36,8 @@ if (process.env.NODE_ENV === 'local') {
       })
     );
 
+    app.enableCors();
+
     await app.listen(configService.port);
   };
   bootstrap();
