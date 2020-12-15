@@ -17,11 +17,11 @@ export class TorreJobsToJobsMapper {
     const [rangeInitialStr, rangeFinalStr] = range.split('-');
     const rangeInitial = Number(rangeInitialStr.replace('>', ''));
     const rangeFinal = Number(rangeFinalStr?.replace('>', ''));
+    const amount = rangeFinalStr ? (rangeInitial + rangeFinal) / 2 : rangeInitial;
     return {
       currency,
       periodicity,
-      rangeInitial,
-      rangeFinal,
+      amount,
       total: rangeAggregator.total
     };
   }

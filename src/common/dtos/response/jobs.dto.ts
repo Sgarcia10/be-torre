@@ -7,8 +7,7 @@ export class JobsResponse {
 
 export class SalaryResponse {
   total: number;
-  rangeInitial: number;
-  rangeFinal: number;
+  amount: number;
   currency: string;
   periodicity: string;
 }

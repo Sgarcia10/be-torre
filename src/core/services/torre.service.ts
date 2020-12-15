@@ -46,7 +46,7 @@ export class TorreService {
   calculateMean(jobs: JobsResponse): number {
     return jobs.salaries
       .map((s) => {
-        return ((s.rangeInitial ?? 0 + s.rangeFinal ?? 0) * s.total) / (2 * jobs.total);
+        return (s.amount * s.total) / (2 * jobs.total);
       })
       .reduce((a, b) => {
         return a + b;
